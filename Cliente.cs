@@ -9,7 +9,8 @@
 
         public override string ToString()
         {
-            return "Nome do usuario da conta: " + Nome; 
+            return "Nome do usuario da conta: " + Nome + "\n" +
+                "Saldo do usuario: R$ " + Saldo;
         }
     }
 }

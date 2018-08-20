@@ -10,10 +10,8 @@ namespace AluraPraticandoBD
     {
         static void Main(string[] args)
         {
-            //AdcionarCliente();
-            BuscaDadosCliente();
-            DeletarCliente(); 
-            BuscaDadosCliente();
+         
+            
 
             Console.ReadLine();
         }
@@ -38,10 +36,12 @@ namespace AluraPraticandoBD
             using (var repor = new LojaContext())
             {
                 IList<Cliente> clientes = repor.Clientes.ToList();
-                Console.WriteLine("Quantidade de clientes achando no BD {0}", clientes.Count);
+                Console.WriteLine("Quantidade de clientes achando no Banco de Dados: {0}", clientes.Count);
                 foreach (var item in clientes)
                 {
+                    Console.WriteLine("................................");
                     Console.WriteLine(item);
+                    Console.WriteLine("................................");
                 }
             }
         }
@@ -50,12 +50,12 @@ namespace AluraPraticandoBD
         {
             
             Cliente cliente2 = new Cliente();
-            cliente2.Nome = "icaro";
-            cliente2.Saldo = 10309.30;
+            cliente2.Nome = "Antonio";
+            cliente2.Saldo = 1309.30;
 
             Cliente cliente3 = new Cliente();
-            cliente3.Nome = "Marcelo";
-            cliente3.Saldo = 20309.30;
+            cliente3.Nome = "Roberta";
+            cliente3.Saldo = 2309.30;
             using (var repor = new LojaContext())
             {
                 repor.Clientes.AddRange(cliente2, cliente3);
@@ -63,5 +63,16 @@ namespace AluraPraticandoBD
                 Console.WriteLine("Adcionado com sucesso!");
             }
         }
+
+        private static void AtualizarCliente()
+        {
+             using(var repor = new LojaContext())
+            {
+                Cliente primeiro = repor.Clientes.First();
+                primeiro.Nome = "O nome modificado";
+                repor.Update(primeiro);
+                repor.SaveChanges();
+            }
+        } 
     }
 }
